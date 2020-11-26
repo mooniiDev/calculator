@@ -13,25 +13,28 @@ body {
 }
 
 main {
-  background-color: #222E44;
   display: inline-grid;
   grid-template-columns: 80px 80px 80px 80px;
   grid-template-rows: 80px 80px 80px 80px 80px 80px;
   grid-template-areas:
-    "text text text text"
+    "output output output output"
     "clear back power divide"
     "seven eight nine multiply"
     "four five six subtract"
     "one two three add"
     "zero decimal equals add";
+  background-color: #222E44;
+  padding: 10px;
+  gap: 5px;
 }
 
 #output {
-  grid-area: text;
+  grid-area: output;
 }
 .symbol {
-  place-self: center;
-  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .symbol:hover,
 #clear:hover {
