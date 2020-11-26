@@ -26,6 +26,7 @@ main {
   background-color: #222E44;
   padding: 10px;
   gap: 5px;
+  font-size: 25px;
 }
 
 #output {
