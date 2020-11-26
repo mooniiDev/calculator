@@ -1,81 +1,91 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
+
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Tera&display=swap" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/normalize.css">
     <link type="text/css" rel="stylesheet" href="css/styles.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&family=Nunito:wght@300&display=swap" rel="stylesheet">
+    <link href="css/all.css" rel="stylesheet">
   </head>
+
   <body>
     <header>
-      <h1>CALCULATOR</h1>
+      <h1 class="title"><span class="calc">CALC</span>ULATOR</h1>
     </header>
+
     <main>
+      <div id="output">
+        OUTPUT
+      </div>
       <!-- Numbers -->
-      <div id="zero" class="symbol">
+      <div id="zero" class="symbol number">
         0
       </div>
-      <div id="one" class="symbol">
+      <div id="one" class="symbol number">
         1
       </div>
-      <div id="two" class="symbol">
+      <div id="two" class="symbol number">
         2
       </div>
-      <div id="three" class="symbol">
+      <div id="three" class="symbol number">
         3
       </div>
-      <div id="four" class="symbol">
+      <div id="four" class="symbol number">
         4
       </div>
-      <div id="five" class="symbol">
+      <div id="five" class="symbol number">
         5
       </div>
-      <div id="six" class="symbol">
+      <div id="six" class="symbol number">
         6
       </div>
-      <div id="seven" class="symbol">
+      <div id="seven" class="symbol number">
         7
       </div>
-      <div id="eight" class="symbol">
+      <div id="eight" class="symbol number">
         8
       </div>
-      <div id="nine" class="symbol">
+      <div id="nine" class="symbol number">
         9
       </div>
-      <div id="decimal" class="symbol">
+      <div id="decimal" class="symbol number">
         .
       </div>
+
       <!-- Operations -->
-      <div id="clear" class="symbol">
+      <div id="clear" class="symbol operation">
         C
       </div>
-      <div id="back" class="symbol">
-        <-
+      <div id="back" class="symbol operation">
+        <i class="fal fa-long-arrow-left"></i>
       </div>
-      <div id="power" class="symbol">
-        x2
+      <div id="power" class="symbol operation">
+        <i class="fal fa-superscript"></i>
       </div>
-      <div id="divide" class="symbol">
-        /
+      <div id="divide" class="symbol operation">
+        <i class="fal fa-divide"></i>
       </div>
-      <div id="multiply" class="symbol">
-        x
+      <div id="multiply" class="symbol operation">
+        <i class="fal fa-times"></i>
       </div>
-      <div id="subtract" class="symbol">
-        -
+      <div id="subtract" class="symbol operation">
+        <i class="fal fa-minus"></i>
       </div>
-      <div id="add" class="symbol">
-        +
+      <div id="add" class="symbol operation">
+        <i class="fal fa-plus"></i>
       </div>
-      <div id="equals" class="symbol">
-        =
+      <div id="equals" class="symbol operation">
+        <i class="fal fa-equals"></i>
       </div>
     </main>
+
     <footer>
       <p>☽ Crafted by mooniiDev ☾</p>
     </footer>
   </body>
+
 </html>

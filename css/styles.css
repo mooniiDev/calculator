@@ -1,24 +1,48 @@
 body {
+  background-color: #1F1F33;
+  font-family: 'Lexend Tera', sans-serif;
   text-align: center;
+  color: #FDFDFD;
+}
+
+.title {
+  margin: 70px 0;
+}
+.calc {
+  color: #E63946;
 }
 
 main {
-  display: grid;
-  grid-template-columns: 50px 50px 50px 50px;
-  grid-template-rows: 50px 50px 50px 50px 50px;
+  background-color: #222E44;
+  display: inline-grid;
+  grid-template-columns: 80px 80px 80px 80px;
+  grid-template-rows: 80px 80px 80px 80px 80px 80px;
   grid-template-areas:
+    "text text text text"
     "clear back power divide"
     "seven eight nine multiply"
     "four five six subtract"
     "one two three add"
     "zero decimal equals add";
-  justify-content: center;
 }
 
+#output {
+  grid-area: text;
+}
 .symbol {
   place-self: center;
+  padding: 20px;
 }
+.symbol:hover,
+#clear:hover {
+  background-color: #1F1F33;
+  cursor: pointer;
+}
+
 /* Numbers */
+.number {
+  background-color: #1B2536;
+}
 #zero {
   grid-area: zero;
 }
@@ -54,8 +78,12 @@ main {
 }
 
 /* Operations */
+.operation {
+  background-color: #1B3A4B;
+}
 #clear {
   grid-area: clear;
+  background-color: #E63946;
 }
 #back {
   grid-area: back;
@@ -77,4 +105,9 @@ main {
 }
 #equals {
   grid-area: equals;
+}
+
+footer {
+  margin-top: 30px;
+  font-size: 12px;
 }
