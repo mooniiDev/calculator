@@ -17,7 +17,7 @@ main {
   grid-template-columns: 80px 80px 80px 80px;
   grid-template-rows: 80px 80px 80px 80px 80px 80px;
   grid-template-areas:
-    "output output output output"
+    "display display display display"
     "clear back power divide"
     "seven eight nine multiply"
     "four five six subtract"
@@ -29,18 +29,24 @@ main {
   font-size: 25px;
 }
 
-#output {
-  grid-area: output;
+#display {
+  grid-area: display;
+  justify-self: end;
+  align-self: end;
+  font-size: 40px;
+  padding: 5px;
 }
 .symbol {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: 0.4s;
 }
 .symbol:hover,
 #clear:hover {
   background-color: #1F1F33;
   cursor: pointer;
+  transition: 0.4s;
 }
 
 /* Numbers */
