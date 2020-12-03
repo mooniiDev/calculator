@@ -43,7 +43,9 @@ main {
   transition: 0.4s;
 }
 .symbol:hover,
-#clear:hover {
+#clear:hover,
+#back:hover,
+#equals:hover {
   background-color: #1F1F33;
   cursor: pointer;
   transition: 0.4s;
@@ -88,7 +90,9 @@ main {
 }
 
 /* Operations */
-.operation {
+.operator,
+#back,
+#equals {
   background-color: #1B3A4B;
 }
 #clear {

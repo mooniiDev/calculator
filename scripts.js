@@ -1,6 +1,8 @@
 const symbols = document.querySelectorAll('.symbol');
 const display = document.querySelector('#display');
-let number1 = '';
+let action = '';
+let num1 = '';
+let num2 = '';
 
 // CALCULATIONS
 function add(a, b) {
@@ -29,19 +31,48 @@ function power(a, b) {
   return answer;
 }
 
-function operate() {
+function clearSymbols(task) {
+  if (task === 'clear') {
+    display.textContent = '';
+    num1 = 0;
+    num2 = 0;
+  } else if (task === 'back') {
+    display.textContent = display.textContent.slice(0, -1);
+  }
+}
+
+function operate(action, num1, num2) {
+  if (action === 'add') {
+    display.textContent = add(+num1, +num2);
+  } else if (action === 'subtract') {
+    display.textContent = subtract(+num1, +num2);
+  } else if (action === 'multiply') {
+    display.textContent = multiply([+num1, +num2]);
+  } else if (action === 'divide') {
+    display.textContent = divide(+num1, +num2);
+  } else if (action === 'power') {
+    display.textContent = power(+num1, +num2);
+  }
+}
+
+function listenButtons() {
   symbols.forEach((button) => {
     button.addEventListener('click', () => {
-      if (button.id === 'clear') {
-        display.textContent = ''
-      }
-      else if (button.id === 'back') {
-        display.textContent = display.textContent.slice(0, -1);
-      } else if (button.classList.contains('number')) {
+      if (button.classList.contains('number')) {
         display.textContent = display.textContent + button.textContent;
+      } else if (button.classList.contains('operator')) {
+        action = button.id;
+        num1 = display.textContent;
+        display.textContent = '';
+      } else if (button.id === 'equals') {
+        num2 = display.textContent;
+        operate(action, num1, num2);
+      } else if (button.id === 'clear') {
+        clearSymbols('clear');
+      } else if (button.id === 'back') {
+        clearSymbols('back');
       }
-      number1 = display.textContent;
     })
   })
 }
-operate();
+listenButtons();
