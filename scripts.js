@@ -13,8 +13,8 @@ function subtract(a, b) {
 }
 function multiply(arr) {
   let answer = 1;
-  for (let i = 0; i < arr.length; i++) {
-    answer = answer * arr[i];
+  for (let i = 0; i < arr.length; i += 1) {
+    answer *= arr[i];
   }
   return answer;
 }
@@ -22,13 +22,26 @@ function divide(a, b) {
   return a / b;
 }
 function power(a, b) {
-  let i = 0;
   let answer = 1;
-  while (i < b) {
-    answer = answer * a;
-    i++;
+  for (let i = 0; i < b; i += 1) {
+    answer *= a;
   }
   return answer;
+}
+
+function operate(task, firstNum, secondNum) {
+  if (task === 'add') {
+    display.textContent = add(+firstNum, +secondNum);
+  } else if (task === 'subtract') {
+    display.textContent = subtract(+firstNum, +secondNum);
+  } else if (task === 'multiply') {
+    display.textContent = multiply([+firstNum, +secondNum]);
+  } else if (task === 'divide') {
+    display.textContent = divide(+firstNum, +secondNum);
+  } else if (task === 'power') {
+    display.textContent = power(+firstNum, +secondNum);
+  }
+  return display.textContent;
 }
 
 function clearSymbols(task) {
@@ -41,25 +54,11 @@ function clearSymbols(task) {
   }
 }
 
-function operate(action, num1, num2) {
-  if (action === 'add') {
-    display.textContent = add(+num1, +num2);
-  } else if (action === 'subtract') {
-    display.textContent = subtract(+num1, +num2);
-  } else if (action === 'multiply') {
-    display.textContent = multiply([+num1, +num2]);
-  } else if (action === 'divide') {
-    display.textContent = divide(+num1, +num2);
-  } else if (action === 'power') {
-    display.textContent = power(+num1, +num2);
-  }
-}
-
 function listenButtons() {
   symbols.forEach((button) => {
     button.addEventListener('click', () => {
       if (button.classList.contains('number')) {
-        display.textContent = display.textContent + button.textContent;
+        display.textContent += button.textContent;
       } else if (button.classList.contains('operator')) {
         action = button.id;
         num1 = display.textContent;
@@ -72,7 +71,7 @@ function listenButtons() {
       } else if (button.id === 'back') {
         clearSymbols('back');
       }
-    })
-  })
+    });
+  });
 }
 listenButtons();
