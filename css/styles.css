@@ -30,12 +30,21 @@ main {
 }
 
 #display {
+  display: grid;
   grid-area: display;
+  width: 336px;
+  font-size: 40px;
+  overflow: hidden;
+}
+#input {
   justify-self: end;
   align-self: end;
-  font-size: 40px;
-  padding: 5px;
+  height: 40px;
+  padding-bottom: 5px;
+  overflow: hidden;
+  text-overflow: clip;
 }
+
 .symbol {
   display: flex;
   align-items: center;

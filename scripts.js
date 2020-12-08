@@ -1,5 +1,5 @@
 const symbols = document.querySelectorAll('.symbol');
-const display = document.querySelector('#display');
+const input = document.querySelector('#input');
 let action = '';
 let num1 = '';
 let num2 = '';
@@ -19,6 +19,9 @@ function multiply(arr) {
   return answer;
 }
 function divide(a, b) {
+  if (b === 0) {
+    return 'ERROR';
+  }
   return a / b;
 }
 function power(a, b) {
@@ -31,26 +34,26 @@ function power(a, b) {
 
 function operate(task, firstNum, secondNum) {
   if (task === 'add') {
-    display.textContent = add(+firstNum, +secondNum);
+    input.textContent = add(+firstNum, +secondNum);
   } else if (task === 'subtract') {
-    display.textContent = subtract(+firstNum, +secondNum);
+    input.textContent = subtract(+firstNum, +secondNum);
   } else if (task === 'multiply') {
-    display.textContent = multiply([+firstNum, +secondNum]);
+    input.textContent = multiply([+firstNum, +secondNum]);
   } else if (task === 'divide') {
-    display.textContent = divide(+firstNum, +secondNum);
+    input.textContent = divide(+firstNum, +secondNum);
   } else if (task === 'power') {
-    display.textContent = power(+firstNum, +secondNum);
+    input.textContent = power(+firstNum, +secondNum);
   }
-  return display.textContent;
+  return input.textContent;
 }
 
 function clearSymbols(task) {
   if (task === 'clear') {
-    display.textContent = '';
+    input.textContent = '';
     num1 = 0;
     num2 = 0;
   } else if (task === 'back') {
-    display.textContent = display.textContent.slice(0, -1);
+    input.textContent = input.textContent.slice(0, -1);
   }
 }
 
@@ -58,13 +61,13 @@ function listenButtons() {
   symbols.forEach((button) => {
     button.addEventListener('click', () => {
       if (button.classList.contains('number')) {
-        display.textContent += button.textContent;
+        input.textContent += button.textContent;
       } else if (button.classList.contains('operator')) {
         action = button.id;
-        num1 = display.textContent;
-        display.textContent = '';
+        num1 = input.textContent;
+        input.textContent = '';
       } else if (button.id === 'equals') {
-        num2 = display.textContent;
+        num2 = input.textContent;
         operate(action, num1, num2);
       } else if (button.id === 'clear') {
         clearSymbols('clear');
