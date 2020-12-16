@@ -5,6 +5,15 @@ body {
   color: #FDFDFD;
 }
 
+/* DISABLE TEXT HIGHLIGHT */
+.noSelect {
+  user-select: none; /* For Chrome and Opera */
+  -ms-user-select: none; /* For Internet Edge and Explorer*/
+  -webkit-user-select: none; /* For Safari */
+  -moz-user-select: none; /* For Firefox */
+  -khtml-user-select: none; /* Konqueror HTML */
+}
+
 .title {
   margin: 70px 0;
 }
@@ -33,16 +42,20 @@ main {
   display: grid;
   grid-area: display;
   width: 336px;
-  font-size: 40px;
+  font-size: 35px;
   overflow: hidden;
 }
-#input {
+#calcHistory,
+#calcInput {
   justify-self: end;
   align-self: end;
   height: 40px;
   padding-bottom: 5px;
   overflow: hidden;
   text-overflow: clip;
+}
+#calcHistory {
+  font-size: 20px;
 }
 
 .symbol {
@@ -51,7 +64,12 @@ main {
   justify-content: center;
   transition: 0.4s;
 }
+#powerSuperscript {
+  font-size: 12px;
+  padding-bottom: 12px;
+}
 .symbol:hover,
+#decimal:hover,
 #clear:hover,
 #back:hover,
 #equals:hover {
@@ -61,7 +79,8 @@ main {
 }
 
 /* Numbers */
-.number {
+.number,
+#decimal {
   background-color: #1B2536;
 }
 #zero {

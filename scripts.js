@@ -1,5 +1,6 @@
 const symbols = document.querySelectorAll('.symbol');
-const input = document.querySelector('#input');
+const history = document.querySelector('#calcHistory');
+const input = document.querySelector('#calcInput');
 let action = '';
 let num1 = '';
 let num2 = '';
@@ -32,7 +33,37 @@ function power(a, b) {
   return answer;
 }
 
-function operate(task, firstNum, secondNum) {
+function showNumber(button) {
+  input.textContent += button.textContent;
+}
+
+function showCalculation(symbol) {
+  if (symbol === 'power') {
+    history.textContent = `${num1}^${num2}`;
+  } else if (symbol === 'divide') {
+    history.textContent = `${num1}÷${num2}`;
+  } else if (symbol === 'multiply') {
+    history.textContent = `${num1}×${num2}`;
+  } else if (symbol === 'subtract') {
+    history.textContent = `${num1}−${num2}`;
+  } else if (symbol === 'add') {
+    history.textContent = `${num1}+${num2}`;
+  }
+}
+
+function clearSymbols(task) {
+  if (task === 'clear') {
+    history.textContent = '';
+    input.textContent = '';
+    action = '';
+    num1 = '';
+    num2 = '';
+  } else if (task === 'back') {
+    input.textContent = input.textContent.slice(0, -1);
+  }
+}
+
+function calculate(task, firstNum, secondNum) {
   if (task === 'add') {
     input.textContent = add(+firstNum, +secondNum);
   } else if (task === 'subtract') {
@@ -44,16 +75,24 @@ function operate(task, firstNum, secondNum) {
   } else if (task === 'power') {
     input.textContent = power(+firstNum, +secondNum);
   }
+  action = '';
+  num1 = '';
+  num2 = '';
   return input.textContent;
 }
 
-function clearSymbols(task) {
-  if (task === 'clear') {
+function operate(button) {
+  if (num1 === '' && input.textContent !== '') {
+    num1 = input.textContent;
+    action = button.id;
     input.textContent = '';
-    num1 = 0;
-    num2 = 0;
-  } else if (task === 'back') {
-    input.textContent = input.textContent.slice(0, -1);
+    showCalculation(action);
+  } else if (num1 !== '') {
+    num2 = input.textContent;
+    showCalculation(action);
+    num1 = calculate(action, num1, num2);
+    input.textContent = num1;
+    action = button.id;
   }
 }
 
@@ -61,14 +100,9 @@ function listenButtons() {
   symbols.forEach((button) => {
     button.addEventListener('click', () => {
       if (button.classList.contains('number')) {
-        input.textContent += button.textContent;
+        showNumber(button);
       } else if (button.classList.contains('operator')) {
-        action = button.id;
-        num1 = input.textContent;
-        input.textContent = '';
-      } else if (button.id === 'equals') {
-        num2 = input.textContent;
-        operate(action, num1, num2);
+        operate(button);
       } else if (button.id === 'clear') {
         clearSymbols('clear');
       } else if (button.id === 'back') {
