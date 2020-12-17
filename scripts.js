@@ -39,27 +39,15 @@ function showNumber(button) {
 
 function showCalculation(symbol) {
   if (symbol === 'power') {
-    history.textContent = `${num1}^${num2}`;
+    history.textContent = `${num1}^`;
   } else if (symbol === 'divide') {
-    history.textContent = `${num1}÷${num2}`;
+    history.textContent = `${num1}÷`;
   } else if (symbol === 'multiply') {
-    history.textContent = `${num1}×${num2}`;
+    history.textContent = `${num1}×`;
   } else if (symbol === 'subtract') {
-    history.textContent = `${num1}−${num2}`;
+    history.textContent = `${num1}−`;
   } else if (symbol === 'add') {
-    history.textContent = `${num1}+${num2}`;
-  }
-}
-
-function clearSymbols(task) {
-  if (task === 'clear') {
-    history.textContent = '';
-    input.textContent = '';
-    action = '';
-    num1 = '';
-    num2 = '';
-  } else if (task === 'back') {
-    input.textContent = input.textContent.slice(0, -1);
+    history.textContent = `${num1}+`;
   }
 }
 
@@ -87,12 +75,25 @@ function operate(button) {
     action = button.id;
     input.textContent = '';
     showCalculation(action);
-  } else if (num1 !== '') {
+  } else if (num1 !== '' && input.textContent !== '') {
     num2 = input.textContent;
-    showCalculation(action);
     num1 = calculate(action, num1, num2);
-    input.textContent = num1;
+    history.textContent = num1;
+    input.textContent = '';
     action = button.id;
+    showCalculation(action);
+  }
+}
+
+function clearSymbols(task) {
+  if (task === 'clear') {
+    history.textContent = '';
+    input.textContent = '';
+    action = '';
+    num1 = '';
+    num2 = '';
+  } else if (task === 'back') {
+    input.textContent = input.textContent.slice(0, -1);
   }
 }
 
