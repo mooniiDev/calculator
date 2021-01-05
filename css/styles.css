@@ -1,10 +1,3 @@
-body {
-  background-color: #1F1F33;
-  font-family: 'Lexend Tera', sans-serif;
-  text-align: center;
-  color: #FDFDFD;
-}
-
 /* DISABLE TEXT HIGHLIGHT */
 .noSelect {
   user-select: none; /* For Chrome and Opera */
@@ -12,6 +5,13 @@ body {
   -webkit-user-select: none; /* For Safari */
   -moz-user-select: none; /* For Firefox */
   -khtml-user-select: none; /* Konqueror HTML */
+}
+
+body {
+  background-color: #1F1F33;
+  font-family: 'Lexend Tera', sans-serif;
+  text-align: center;
+  color: #FDFDFD;
 }
 
 .title {

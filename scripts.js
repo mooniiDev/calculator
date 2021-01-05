@@ -34,21 +34,28 @@ function power(a, b) {
 }
 
 function showNumber(button) {
-  input.textContent += button.textContent;
+  if (num1 !== '' && history.textContent !== '') {
+    input.textContent = '';
+    input.textContent += button.textContent;
+  } else {
+    input.textContent += button.textContent;
+  }
 }
 
 function showCalculation(symbol) {
+  let calcHistory = '';
   if (symbol === 'power') {
-    history.textContent = `${num1}^`;
+    calcHistory = `${num1}^${num2}=`;
   } else if (symbol === 'divide') {
-    history.textContent = `${num1}÷`;
+    calcHistory = `${num1}÷${num2}=`;
   } else if (symbol === 'multiply') {
-    history.textContent = `${num1}×`;
+    calcHistory = `${num1}×${num2}=`;
   } else if (symbol === 'subtract') {
-    history.textContent = `${num1}−`;
+    calcHistory = `${num1}−${num2}=`;
   } else if (symbol === 'add') {
-    history.textContent = `${num1}+`;
+    calcHistory = `${num1}+${num2}=`;
   }
+  return calcHistory;
 }
 
 function calculate(task, firstNum, secondNum) {
@@ -70,18 +77,16 @@ function calculate(task, firstNum, secondNum) {
 }
 
 function operate(button) {
-  if (num1 === '' && input.textContent !== '') {
+  if (num1 === '') {
     num1 = input.textContent;
     action = button.id;
     input.textContent = '';
-    showCalculation(action);
-  } else if (num1 !== '' && input.textContent !== '') {
+  } else if (num1 !== '') {
     num2 = input.textContent;
+    history.textContent = showCalculation(action);
     num1 = calculate(action, num1, num2);
-    history.textContent = num1;
-    input.textContent = '';
+    input.textContent = num1;
     action = button.id;
-    showCalculation(action);
   }
 }
 
