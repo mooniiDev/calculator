@@ -79,9 +79,7 @@ function showCalculation(symbol) {
 }
 
 function operate(button) {
-  if (num1 !== '' && num2 !== '' && button.classList.contains('equals')) {
-    calculate(action, num1, num2);
-  } else if (num1 === '') {
+  if (num1 === '') {
     num1 = input.textContent;
     action = button.id;
   } else if (num1 !== '') {
