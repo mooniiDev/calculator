@@ -1,99 +1,104 @@
 const symbols = document.querySelectorAll('.symbol');
 const history = document.querySelector('#calcHistory');
 const input = document.querySelector('#calcInput');
+let calcHistory = '';
+let calcAnswer = '';
 let action = '';
 let num1 = '';
 let num2 = '';
 
+// ROUND TO THREE DECIMAL PLACES
+function roundNumber(calculation) {
+  const rounded = Math.round(calculation * 1000) / 1000;
+  return rounded;
+}
+
 // CALCULATIONS
 function add(a, b) {
-  return a + b;
+  return roundNumber(a + b);
 }
 function subtract(a, b) {
-  return a - b;
+  return roundNumber(a - b);
 }
 function multiply(arr) {
   let answer = 1;
   for (let i = 0; i < arr.length; i += 1) {
     answer *= arr[i];
   }
-  return answer;
+  return roundNumber(answer);
 }
 function divide(a, b) {
   if (b === 0) {
-    return 'ERROR';
+    return 'NOPE🙈';
   }
-  return a / b;
+  return roundNumber(a / b);
 }
 function power(a, b) {
   let answer = 1;
   for (let i = 0; i < b; i += 1) {
     answer *= a;
   }
-  return answer;
+  return roundNumber(answer);
 }
 
 function showNumber(button) {
-  if (num1 !== '' && history.textContent !== '') {
-    input.textContent = '';
-    input.textContent += button.textContent;
-  } else {
-    input.textContent += button.textContent;
-  }
-}
-
-function showCalculation(symbol) {
-  let calcHistory = '';
-  if (symbol === 'power') {
-    calcHistory = `${num1}^${num2}=`;
-  } else if (symbol === 'divide') {
-    calcHistory = `${num1}÷${num2}=`;
-  } else if (symbol === 'multiply') {
-    calcHistory = `${num1}×${num2}=`;
-  } else if (symbol === 'subtract') {
-    calcHistory = `${num1}−${num2}=`;
-  } else if (symbol === 'add') {
-    calcHistory = `${num1}+${num2}=`;
-  }
-  return calcHistory;
+  input.textContent += button.textContent;
 }
 
 function calculate(task, firstNum, secondNum) {
   if (task === 'add') {
-    input.textContent = add(+firstNum, +secondNum);
+    calcAnswer = add(+firstNum, +secondNum);
   } else if (task === 'subtract') {
-    input.textContent = subtract(+firstNum, +secondNum);
+    calcAnswer = subtract(+firstNum, +secondNum);
   } else if (task === 'multiply') {
-    input.textContent = multiply([+firstNum, +secondNum]);
+    calcAnswer = multiply([+firstNum, +secondNum]);
   } else if (task === 'divide') {
-    input.textContent = divide(+firstNum, +secondNum);
+    calcAnswer = divide(+firstNum, +secondNum);
   } else if (task === 'power') {
-    input.textContent = power(+firstNum, +secondNum);
+    calcAnswer = power(+firstNum, +secondNum);
   }
   action = '';
   num1 = '';
   num2 = '';
-  return input.textContent;
+  return calcAnswer;
+}
+
+function showCalculation(symbol) {
+  if (symbol === 'power') {
+    calcHistory = `${num1}^${num2}=${calculate(action, num1, num2)}`;
+  } else if (symbol === 'divide') {
+    calcHistory = `${num1}÷${num2}=${calculate(action, num1, num2)}`;
+  } else if (symbol === 'multiply') {
+    calcHistory = `${num1}×${num2}=${calculate(action, num1, num2)}`;
+  } else if (symbol === 'subtract') {
+    calcHistory = `${num1}−${num2}=${calculate(action, num1, num2)}`;
+  } else if (symbol === 'add') {
+    calcHistory = `${num1}+${num2}=${calculate(action, num1, num2)}`;
+  }
+  return calcHistory;
 }
 
 function operate(button) {
-  if (num1 === '') {
+  if (num1 !== '' && num2 !== '' && button.classList.contains('equals')) {
+    calculate(action, num1, num2);
+  } else if (num1 === '') {
     num1 = input.textContent;
     action = button.id;
-    input.textContent = '';
   } else if (num1 !== '') {
     num2 = input.textContent;
     history.textContent = showCalculation(action);
     num1 = calculate(action, num1, num2);
-    input.textContent = num1;
     action = button.id;
   }
+  input.textContent = '';
 }
 
 function clearSymbols(task) {
   if (task === 'clear') {
     history.textContent = '';
     input.textContent = '';
+    calcHistory = '';
+    calcAnswer = '';
     action = '';
     num1 = '';
     num2 = '';
