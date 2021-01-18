@@ -1,48 +1,49 @@
 const symbols = document.querySelectorAll('.symbol');
 const history = document.querySelector('#calcHistory');
 const input = document.querySelector('#calcInput');
+const decimal = document.querySelector('#decimal');
 let calcHistory = '';
 let calcAnswer = '';
 let action = '';
 let num1 = '';
 let num2 = '';
 
-// ROUND TO THREE DECIMAL PLACES
-function roundNumber(calculation) {
-  const rounded = Math.round(calculation * 1000) / 1000;
-  return rounded;
-}
-
 // CALCULATIONS
 function add(a, b) {
-  return roundNumber(a + b);
+  return a + b;
 }
 function subtract(a, b) {
-  return roundNumber(a - b);
+  return a - b;
 }
 function multiply(arr) {
   let answer = 1;
   for (let i = 0; i < arr.length; i += 1) {
     answer *= arr[i];
   }
-  return roundNumber(answer);
+  return answer;
 }
 function divide(a, b) {
   if (b === 0) {
     return 'NOPE🙈';
   }
-  return roundNumber(a / b);
+  return a / b;
 }
 function power(a, b) {
   let answer = 1;
   for (let i = 0; i < b; i += 1) {
     answer *= a;
   }
-  return roundNumber(answer);
+  return answer;
 }
 
 function showNumber(button) {
   input.textContent += button.textContent;
+}
+
+// ROUND TO THREE DECIMAL PLACES
+function roundNumber(calculation) {
+  const rounded = Math.round(calculation * 1000) / 1000;
+  return rounded;
 }
 
 function calculate(task, firstNum, secondNum) {
@@ -60,6 +61,9 @@ function calculate(task, firstNum, secondNum) {
   action = '';
   num1 = '';
   num2 = '';
+  if (calcAnswer !== 'NOPE🙈') {
+    return roundNumber(calcAnswer).toFixed(3);
+  }
   return calcAnswer;
 }
 
@@ -79,6 +83,7 @@ function showCalculation(symbol) {
 }
 
 function operate(button) {
+  decimal.removeAttribute('disabled', '');
   if (num1 === '') {
     num1 = input.textContent;
     action = button.id;
@@ -95,6 +100,7 @@ function clearSymbols(task) {
   if (task === 'clear') {
     history.textContent = '';
     input.textContent = '';
+    decimal.removeAttribute('disabled', '');
     calcHistory = '';
     calcAnswer = '';
     action = '';
@@ -105,11 +111,22 @@ function clearSymbols(task) {
   }
 }
 
+function showDecimal(button) {
+  if (input.textContent === '' || input.textContent === '.') {
+    input.textContent = button.textContent;
+  } else if (input.textContent !== '') {
+    input.textContent += button.textContent;
+    button.setAttribute('disabled', '');
+  }
+}
+
 function listenButtons() {
   symbols.forEach((button) => {
     button.addEventListener('click', () => {
       if (button.classList.contains('number')) {
         showNumber(button);
+      } else if (button.id === 'decimal') {
+        showDecimal(button);
       } else if (button.classList.contains('operator')) {
         operate(button);
       } else if (button.id === 'clear') {
