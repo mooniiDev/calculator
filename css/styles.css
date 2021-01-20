@@ -38,6 +38,10 @@ main {
   font-size: 25px;
 }
 
+button:focus {
+  outline: 1px solid #FDFDFD;
+}
+
 #display {
   display: grid;
   grid-area: display;

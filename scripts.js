@@ -108,15 +108,19 @@ function clearSymbols(task) {
     num2 = '';
   } else if (task === 'back') {
     input.textContent = input.textContent.slice(0, -1);
+    if (!input.textContent.includes('.')) {
+      decimal.removeAttribute('disabled', '');
+    }
   }
 }
 
 function showDecimal(button) {
   if (input.textContent === '' || input.textContent === '.') {
     input.textContent = button.textContent;
-  } else if (input.textContent !== '') {
-    input.textContent += button.textContent;
+  } else if (input.textContent !== '' && input.textContent.includes('.')) {
     button.setAttribute('disabled', '');
+  } else {
+    input.textContent += button.textContent;
   }
 }
 
