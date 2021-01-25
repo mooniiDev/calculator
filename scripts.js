@@ -41,7 +41,7 @@ function power(a, b) {
 
 function setOperatorsState(state) {
   operators.forEach((operator) => {
-    if (state === 'disable') {
+    if (state === 'disable' || calcAnswer === 'NOPE🙈' || calcAnswer === Infinity) {
       operator.setAttribute('disabled', '');
     } else if (state === 'enable') {
       operator.removeAttribute('disabled', '');
@@ -52,10 +52,10 @@ function setOperatorsState(state) {
 function clearSymbols(task) {
   if (task === 'clear') {
     setOperatorsState('enable');
+    decimal.removeAttribute('disabled', '');
+    equals.removeAttribute('disabled', '');
     history.textContent = '';
     input.textContent = '';
-    decimal.removeAttribute('disabled', '');
-    equals.setAttribute('disabled', '');
     calcHistory = '';
     calcAnswer = '';
     action = '';
@@ -111,12 +111,19 @@ function showCalculation(symbol) {
   return calcHistory;
 }
 
+function setEqualsButtonState(state) {
+  if (action === '' || state === 'disable') {
+    equals.setAttribute('disabled', '');
+  } else {
+    equals.removeAttribute('disabled', '');
+  }
+}
+
 function operate(button) {
   decimal.removeAttribute('disabled', '');
   if (num1 === '') {
     num1 = input.textContent;
     action = button.id;
-    equals.removeAttribute('disabled', '');
   } else if (num1 !== '' && action !== '') {
     num2 = input.textContent;
     history.textContent = showCalculation(action);
@@ -124,11 +131,15 @@ function operate(button) {
     action = button.id;
   }
   setOperatorsState('disable');
+  setEqualsButtonState('disable');
   input.textContent = '';
 }
 
 function showDecimal(button) {
-  if (input.textContent === '' || input.textContent === '.') {
+  if (calcAnswer !== '') {
+    clearSymbols('clear');
+    input.textContent += button.textContent;
+  } else if (input.textContent === '' || input.textContent === '.') {
     input.textContent = button.textContent;
   } else if (input.textContent !== '' && input.textContent.includes('.')) {
     button.setAttribute('disabled', '');
@@ -138,8 +149,11 @@ function showDecimal(button) {
 }
 
 function showNumber(button) {
+  if (action === 'equals' || calcAnswer === 'NOPE🙈' || calcAnswer === Infinity) {
+    clearSymbols('clear');
+  }
   input.textContent += button.textContent;
-  equals.removeAttribute('disabled', '');
+  setEqualsButtonState();
   setOperatorsState('enable');
 }
 
@@ -150,7 +164,6 @@ function listenButtons() {
         showNumber(button);
       } else if (button.classList.contains('operator')) {
         operate(button);
-        equals.setAttribute('disabled', '');
       } else if (button.id === 'decimal') {
         showDecimal(button);
       } else if (button.id === 'equals') {
