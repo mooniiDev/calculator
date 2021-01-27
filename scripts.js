@@ -136,7 +136,7 @@ function operate(button) {
 }
 
 function showDecimal(button) {
-  if (calcAnswer !== '') {
+  if (calcAnswer !== '' && action === 'equals') {
     clearSymbols('clear');
     input.textContent += button.textContent;
   } else if (input.textContent === '' || input.textContent === '.') {

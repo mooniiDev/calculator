@@ -157,5 +157,9 @@ button:focus {
 
 footer {
   margin-top: 30px;
-  font-size: 12px;
+  font-size: 15px;
+}
+#copyright {
+  text-decoration: none;
+  color: #E63946
 }
