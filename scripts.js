@@ -178,9 +178,6 @@ function listenButtons() {
   });
   // KEYBOARD SUPPORT
   document.addEventListener('keydown', (event) => {
-    // if (event.defaultPrevented) {
-    //   return;
-    // }
     if (event.key === 'Escape') {
       document.getElementById('clear').click();
     } else if (event.key === 'Backspace') {
