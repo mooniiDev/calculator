@@ -89,34 +89,34 @@ button:focus {
 #decimal {
   background-color: #1B2536;
 }
-#zero {
+#number-0{
   grid-area: zero;
 }
-#one {
+#number-1 {
   grid-area: one;
 }
-#two {
+#number-2 {
   grid-area: two;
 }
-#three {
+#number-3 {
   grid-area: three;
 }
-#four {
+#number-4 {
   grid-area: four;
 }
-#five {
+#number-5 {
   grid-area: five;
 }
-#six {
+#number-6 {
   grid-area: six;
 }
-#seven {
+#number-7 {
   grid-area: seven;
 }
-#eight {
+#number-8 {
   grid-area: eight;
 }
-#nine {
+#number-9 {
   grid-area: nine;
 }
 #decimal {
@@ -136,7 +136,7 @@ button:focus {
 #back {
   grid-area: back;
 }
-#power {
+#symbol {
   grid-area: power;
 }
 #divide {
