@@ -157,6 +157,14 @@ function showNumber(button) {
   setOperatorsState('enable');
 }
 
+const operatorsObj = {
+  '^': 'power',
+  '/': 'divide',
+  '*': 'multiply',
+  '-': 'subtract',
+  '+': 'add',
+};
+
 function listenButtons() {
   symbols.forEach((button) => {
     button.addEventListener('click', () => {
@@ -182,21 +190,13 @@ function listenButtons() {
       document.getElementById('clear').click();
     } else if (event.key === 'Backspace') {
       document.getElementById('back').click();
-    } else if (event.key === '^') {
-      document.getElementById('power').click();
-    } else if (event.key === '/') {
-      document.getElementById('divide').click();
-    } else if (event.key === '*') {
-      document.getElementById('multiply').click();
-    } else if (event.key === '-') {
-      document.getElementById('subtract').click();
-    } else if (event.key === '+') {
-      document.getElementById('add').click();
     } else if (event.key === 'Enter') {
       event.preventDefault();
       document.getElementById('equals').click();
     } else if (event.key === '.') {
       document.getElementById('decimal').click();
+    } else if (event.key in operatorsObj) {
+      document.getElementById(operatorsObj[event.key]).click();
     } else if (!Number.isNaN(event.key)) {
       document.getElementById(`number-${event.key}`).click();
     }
