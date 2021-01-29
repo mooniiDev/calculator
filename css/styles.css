@@ -32,7 +32,7 @@ main {
 /* DISABLE BUTTONS HIGHLIGHT */
 button {
   user-select: none; /* For Chrome and Opera */
-  -ms-user-select: none; /* For Internet Edge and Explorer*/
+  -ms-user-select: none; /* For Internet Edge and Explorer */
   -webkit-user-select: none; /* For Safari */
   -moz-user-select: none; /* For Firefox */
   -khtml-user-select: none; /* Konqueror HTML */
@@ -88,7 +88,7 @@ button:focus {
 #decimal {
   background-color: #1B2536;
 }
-#number-0{
+#number-0 {
   grid-area: zero;
 }
 #number-1 {
@@ -135,7 +135,7 @@ button:focus {
 #back {
   grid-area: back;
 }
-#symbol {
+#power {
   grid-area: power;
 }
 #divide {
