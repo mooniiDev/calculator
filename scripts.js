@@ -152,7 +152,11 @@ function showNumber(button) {
   if (action === 'equals' || calcAnswer === 'NOPE🙈' || calcAnswer === Infinity) {
     clearSymbols('clear');
   }
-  input.textContent += button.textContent;
+  if (input.textContent === '0') {
+    input.textContent = button.textContent;
+  } else {
+    input.textContent += button.textContent;
+  }
   setEqualsButtonState();
   setOperatorsState('enable');
 }
