@@ -1,6 +1,6 @@
 const history = document.querySelector('#calcHistory');
 const input = document.querySelector('#calcInput');
-const symbols = document.querySelectorAll('.symbol');
+const buttons = document.querySelectorAll('.symbol');
 const operators = document.querySelectorAll('.operator');
 const equals = document.querySelector('#equals');
 const decimal = document.querySelector('#decimal');
@@ -114,7 +114,7 @@ function operate(button) {
   input.textContent = '';
 }
 
-function clearSymbols(task) {
+function clearDisplay(task) {
   if (task === 'clear') {
     setOperatorsState('enable');
     decimal.removeAttribute('disabled', '');
@@ -136,7 +136,7 @@ function clearSymbols(task) {
 
 function showNumber(button) {
   if (action === 'equals' || calcAnswer === 'NOPE🙈' || calcAnswer === Infinity) {
-    clearSymbols('clear');
+    clearDisplay('clear');
   }
   if (input.textContent === '0') {
     input.textContent = button.textContent;
@@ -149,7 +149,7 @@ function showNumber(button) {
 
 function showDecimal(button) {
   if (calcAnswer !== '' && action === 'equals') {
-    clearSymbols('clear');
+    clearDisplay('clear');
     input.textContent += button.textContent;
   } else if (input.textContent === '' || input.textContent === '.') {
     input.textContent = button.textContent;
@@ -161,7 +161,7 @@ function showDecimal(button) {
 }
 
 function listenButtons() {
-  symbols.forEach((button) => {
+  buttons.forEach((button) => {
     button.addEventListener('click', () => {
       if (button.classList.contains('number')) {
         showNumber(button);
@@ -173,9 +173,9 @@ function listenButtons() {
         operate(button);
         setOperatorsState('enable');
       } else if (button.id === 'clear') {
-        clearSymbols('clear');
+        clearDisplay('clear');
       } else if (button.id === 'back') {
-        clearSymbols('back');
+        clearDisplay('back');
       }
     });
   });
