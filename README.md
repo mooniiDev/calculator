@@ -32,4 +32,4 @@
 * Used **CSS Grid** and **CSS Flexbox** modules to create layout
 * Learned how to implement **keyboard support**
 * Deepened knowledge of how **functions work** together
-* This was a **tough project** and I had a **challenging** experience! 🤓
+* This was a **tough project** and I had a **challenging experience**! 🤓
