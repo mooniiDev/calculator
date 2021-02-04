@@ -69,7 +69,7 @@ button:focus {
   border: none;
   transition: 0.4s;
 }
-#powerSuperscript {
+#power-superscript {
   font-size: 12px;
   padding-bottom: 12px;
 }
